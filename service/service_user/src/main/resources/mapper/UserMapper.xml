@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.fishing.user.mapper.UserMapper">
+
+
+    <insert id="insertUser" parameterType="com.zhehao.fishing.model.UserEntity">
+        INSERT INTO users (username, password, email)
+        VALUES (#{username}, #{password}, #{email})
+    </insert>
+
+    <!-- Retrieve a user by ID -->
+    <select id="selectUserById" resultType="com.zhehao.fishing.model.UserEntity">
+        SELECT * FROM users WHERE id = #{id}
+    </select>
+
+    <!-- Retrieve a user by email -->
+    <select id="selectUserByUsername" resultType="com.zhehao.fishing.model.UserEntity">
+        SELECT * FROM users WHERE email = #{email}
+    </select>
+
+    <!-- Update a user's information -->
+    <update id="updateUser" parameterType="com.zhehao.fishing.model.UserEntity">
+        UPDATE users
+        SET
+            username = #{username},
+            password = encryptPassword(#{password}),
+            email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete a user by ID -->
+    <delete id="deleteUserById">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+</mapper>
