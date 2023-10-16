@@ -1,4 +1,4 @@
-package com.zhehao.fishing;
+package com.zhehao;
 
 /**
  * Hello world!

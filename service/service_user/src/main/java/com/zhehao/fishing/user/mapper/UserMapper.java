@@ -7,4 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper extends BaseMapper<UserEntity>{
     void insertUser(UserEntity user);
+    UserEntity getUserByEmail(String email);
+    void updateUser(UserEntity user);
+    void deleteUserByEmail(String email);
 }

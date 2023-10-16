@@ -3,7 +3,7 @@
     <parent>
         <artifactId>fishing</artifactId>
         <groupId>com.zhehao</groupId>
-        <version>3.1.4</version>
+        <version>3.0.9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,6 +14,12 @@
     <url>https://maven.apache.org</url>
     <modules>
         <module>service_user</module>
+        <module>service_skill</module>
+        <module>service_fish</module>
+        <module>service_catch</module>
+        <module>service_community</module>
+        <module>service_like</module>
+        <module>service_comment</module>
     </modules>
 
     <properties>
@@ -25,6 +31,46 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator</artifactId>
             <version>3.1.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-loadbalancer -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+            <version>4.0.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>4.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.0.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zhehao</groupId>
+            <artifactId>model</artifactId>
+            <version>3.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zhehao</groupId>
+            <artifactId>exceptions</artifactId>
+            <version>3.0.9</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>3.0.9</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.0.9</version>
         </dependency>
     </dependencies>
 </project>

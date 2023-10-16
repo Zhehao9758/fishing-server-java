@@ -8,13 +8,8 @@
         VALUES (#{username}, #{password}, #{email})
     </insert>
 
-    <!-- Retrieve a user by ID -->
-    <select id="selectUserById" resultType="com.zhehao.fishing.model.UserEntity">
-        SELECT * FROM users WHERE id = #{id}
-    </select>
-
     <!-- Retrieve a user by email -->
-    <select id="selectUserByUsername" resultType="com.zhehao.fishing.model.UserEntity">
+    <select id="getUserByEmail" resultType="com.zhehao.fishing.model.UserEntity">
         SELECT * FROM users WHERE email = #{email}
     </select>
 
@@ -25,12 +20,12 @@
             username = #{username},
             password = encryptPassword(#{password}),
             email = #{email}
-        WHERE id = #{id}
+        WHERE user_id = #{user_id}
     </update>
 
-    <!-- Delete a user by ID -->
-    <delete id="deleteUserById">
-        DELETE FROM users WHERE id = #{id}
+    <!-- Delete a user by email -->
+    <delete id="deleteUserByEmail">
+        DELETE FROM users WHERE email = #{email}
     </delete>
 
 </mapper>

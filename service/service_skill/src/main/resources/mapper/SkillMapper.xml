@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.fishing.skill.mapper.SkillMapper">
+
+
+    <!-- Retrieve a fish by id -->
+    <select id="getSkillById" resultType="com.zhehao.fishing.model.SkillEntity">
+        SELECT * FROM fishing_methods WHERE fishing_method_id = #{fishingMethodId}
+    </select>
+
+    <!-- Retrieve a fish by name -->
+    <select id="getSkillByName" resultType="com.zhehao.fishing.model.SkillEntity">
+        SELECT * FROM fishing_methods WHERE fish_method_name = #{fishMethodName}
+    </select>
+
+    <!-- Update a user's information -->
+    <update id="updateSkill" parameterType="com.zhehao.fishing.model.SkillEntity">
+        UPDATE fishing_methods
+        SET
+            fish_method_name = #{fishMethodName},
+            fish_method_images = #{fishMethodImages},
+            fish_method_description = #{fishMethodDescription},
+            target_species = #{targetSpecies}
+        WHERE fishing_method_id = #{fishingMethodId}
+    </update>
+
+    <!-- Delete a fish by id -->
+    <delete id="deleteSkillById">
+        DELETE FROM fishing_methods WHERE fishing_method_id = #{fishingMethodId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,20 @@
+front end react
+back end java
+spring cloud
+
+nacos
+gateway(need load balancer!!!)
+rabbitmq(springamqp)(notification)
+mybatis plus
+mysql
+rpc(dubbo)
+
+service
+1. weather
+2. user
+3. skill
+4. catch
+5. community
+6. like
+7, comment
+8. save

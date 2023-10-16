@@ -6,9 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @Data
 @TableName("users")
 public class UserEntity{
-    private long id;
+    private Long user_id;
     private String username;
     private String password; // encrypted
+
     private String email;
 
     public UserEntity(){
@@ -21,12 +22,12 @@ public class UserEntity{
         this.email = email;
     }
 
-    public long getId() {
-        return id;
+    public Long getUser_Id() {
+        return user_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUser_Id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.fishing.fish.mapper.FishMapper">
+
+
+    <insert id="insertFish" parameterType="com.zhehao.fishing.model.FishEntity">
+        INSERT INTO fishes (fish_name, fish_image_urls, food, habitat, fish_description)
+        VALUES (#{fishName}, #{fishImageUrls}, #{food}, #{habitat}, #{fishDescription})
+    </insert>
+
+    <!-- Retrieve a fish by id -->
+    <select id="getFishById" resultType="com.zhehao.fishing.model.FishEntity">
+        SELECT * FROM fishes WHERE fish_id = #{fishId}
+    </select>
+
+    <!-- Retrieve a fish by name -->
+    <select id="getFishByName" resultType="com.zhehao.fishing.model.FishEntity">
+        SELECT * FROM fishes WHERE fish_name = #{fishName}
+    </select>
+
+    <!-- Update a user's information -->
+    <update id="updateFish" parameterType="com.zhehao.fishing.model.FishEntity">
+        UPDATE fishes
+        SET
+            fish_name = #{fishName},
+            fish_image_urls = #{fishImageUrls},
+            food = #{food},
+            habitat = #{habitat},
+            fish_description = #{fishDescription}
+        WHERE fish_id = #{fishId}
+    </update>
+
+    <!-- Delete a fish by id -->
+    <delete id="deleteFishById">
+        DELETE FROM fishes WHERE fish_id = #{fishId}
+    </delete>
+
+</mapper>

@@ -3,7 +3,7 @@
     <parent>
         <artifactId>fishing</artifactId>
         <groupId>com.zhehao</groupId>
-        <version>3.1.4</version>
+        <version>3.0.9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common</artifactId>
@@ -14,6 +14,7 @@
     <modules>
         <module>service_utils</module>
         <module>common_utils</module>
+        <module>exceptions</module>
     </modules>
 
     <properties>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.fishing.catches.mapper.CatchMapper">
+
+
+    <insert id="insertCatch" parameterType="com.zhehao.fishing.model.CatchEntity">
+        INSERT INTO catches (catch_title, catch_text, catch_publish_time, catch_image_urls, user_id, likes)
+        VALUES (#{catchTitle}, #{catchText}, #{catchPublishTime}, #{catchImageUrls}, #{userId}, #{likes})
+    </insert>
+
+    <select id="getCatchById" resultType="com.zhehao.fishing.model.CatchEntity">
+        SELECT * FROM catches WHERE catch_id = #{catchId}
+    </select>
+
+    <select id="getCatchesByUserIdOrderedByTime" parameterType="long" resultType="com.zhehao.fishing.model.CatchEntity">
+        SELECT * FROM catches
+        WHERE user_id = #{userId}
+        ORDER BY catch_publish_time DESC
+    </select>
+
+    <update id="incrementLikes" parameterType="java.lang.Long">
+        UPDATE catches
+        SET likes = likes + 1
+        WHERE catch_id = #{catchId}
+    </update>
+
+
+
+    <update id="updateCatch" parameterType="com.zhehao.fishing.model.CatchEntity">
+        UPDATE catches
+        SET
+            catch_title = #{catchTitle},
+            catch_text = #{catchText},
+            catch_image_urls = #{catchImageUrls},
+            likes = #{likes}
+        WHERE catch_id = #{catchId}
+    </update>
+
+    <!-- Delete a fish by id -->
+    <delete id="deleteCatchById">
+        DELETE FROM catches WHERE catch_id = #{catchId}
+    </delete>
+
+</mapper>

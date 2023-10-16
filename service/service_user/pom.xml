@@ -3,7 +3,7 @@
     <parent>
         <artifactId>service</artifactId>
         <groupId>com.zhehao</groupId>
-        <version>3.1.4</version>
+        <version>3.0.9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,11 +22,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.zhehao</groupId>
-            <artifactId>model</artifactId>
-            <version>3.1.4</version>
         </dependency>
     </dependencies>
 </project>

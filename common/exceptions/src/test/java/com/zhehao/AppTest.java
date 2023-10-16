@@ -1,4 +1,4 @@
-package com.zhehao.fishing;
+package com.zhehao;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
