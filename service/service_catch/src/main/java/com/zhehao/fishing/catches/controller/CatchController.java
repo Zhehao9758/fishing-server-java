@@ -35,8 +35,6 @@ public class CatchController {
     public ResponseEntity<String> addCatch(@RequestBody CatchEntity catchEntity){
         try {
             catchEntity.setLikes(0L);
-            catchEntity.setCatchPublishTime(new Timestamp(System.currentTimeMillis()));
-            System.out.println(catchEntity);
             catchService.insertCatch(catchEntity);
             return ResponseEntity.status(HttpStatus.CREATED).body("Catch published successfully");
         } catch (Exception e) {

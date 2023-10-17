@@ -16,4 +16,5 @@ public interface CatchService extends IService<CatchEntity> {
     List<CatchEntity> getCatchPage(int pageNumber, int size);
 
     void incrementLikes(long id);
+    void decrementLikes(long id);
 }

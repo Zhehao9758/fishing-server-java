@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.fishing.community.mapper.CommunityMapper">
+
+
+    <insert id="insertPost" parameterType="com.zhehao.fishing.model.PostEntity">
+        INSERT INTO posts (post_title, post_text, author_id, post_publish_time, likes_num, comments_num)
+        VALUES (#{postTitle}, #{postText}, #{authorId}, #{postPublishTime}, #{likesNum}, #{commentsNum})
+    </insert>
+
+    <select id="getPostById" resultType="com.zhehao.fishing.model.PostEntity">
+        SELECT * FROM posts WHERE post_id = #{postId}
+    </select>
+
+    <select id="getPostsByUserIdOrderedByTime" parameterType="long" resultType="com.zhehao.fishing.model.PostEntity">
+        SELECT * FROM posts
+        WHERE author_id = #{authorId}
+        ORDER BY post_publish_time DESC
+    </select>
+
+    <update id="incrementLikes" parameterType="java.lang.Long">
+        UPDATE posts
+        SET likes_num = likes_num + 1
+        WHERE post_id = #{postId}
+    </update>
+
+
+    <update id="decrementLikes" parameterType="java.lang.Long">
+        UPDATE posts
+        SET likes_num = likes_num - 1
+        WHERE post_id = #{postId}
+    </update>
+
+    <update id="incrementComments" parameterType="java.lang.Long">
+        UPDATE posts
+        SET comments_num = comments_num + 1
+        WHERE post_id = #{postId}
+    </update>
+
+
+    <update id="decrementComments" parameterType="java.lang.Long">
+        UPDATE posts
+        SET comments_num = comments_num - 1
+        WHERE post_id = #{postId}
+    </update>
+
+    <update id="updatePost" parameterType="com.zhehao.fishing.model.PostEntity">
+        UPDATE posts
+        SET
+            post_title = #{postTitle},
+            post_text = #{postText},
+            likes_num = #{likesNum},
+            comments_num = #{commentsNum}
+        WHERE post_id = #{postId}
+    </update>
+
+
+
+    <!-- Delete a fish by id -->
+    <delete id="deletePostById">
+        DELETE FROM posts WHERE post_id = #{postId}
+    </delete>
+
+</mapper>

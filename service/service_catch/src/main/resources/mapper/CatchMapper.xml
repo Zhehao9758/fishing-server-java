@@ -25,6 +25,11 @@
     </update>
 
 
+    <update id="decrementLikes" parameterType="java.lang.Long">
+        UPDATE catches
+        SET likes = likes - 1
+        WHERE catch_id = #{catchId}
+    </update>
 
     <update id="updateCatch" parameterType="com.zhehao.fishing.model.CatchEntity">
         UPDATE catches
@@ -35,6 +40,8 @@
             likes = #{likes}
         WHERE catch_id = #{catchId}
     </update>
+
+
 
     <!-- Delete a fish by id -->
     <delete id="deleteCatchById">

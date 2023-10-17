@@ -15,4 +15,5 @@ public interface CatchMapper extends BaseMapper<CatchEntity> {
     void deleteCatchById(long id);
 
     void incrementLikes(long id);
+    void decrementLikes(long id);
 }

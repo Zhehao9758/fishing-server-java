@@ -62,6 +62,21 @@ public class CatchServiceImpl extends ServiceImpl<CatchMapper, CatchEntity> impl
 
     @Override
     public void incrementLikes(long id) {
+        if(getCatchById(id)==null){
+            throw new CatchNotFoundException("Catch not exits");
+        }
         catchMapper.incrementLikes(id);
+    }
+
+    @Override
+    public void decrementLikes(long id){
+        CatchEntity catchEntity = getCatchById(id);
+        if(catchEntity==null){
+            throw new CatchNotFoundException("Catch not exits");
+        }
+        if(catchEntity.getLikes() <= 0){
+            throw new IllegalStateException("No like to cancel");
+        }
+        catchMapper.decrementLikes(id);
     }
 }
