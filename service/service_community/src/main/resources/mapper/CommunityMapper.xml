@@ -44,6 +44,13 @@
         WHERE post_id = #{postId}
     </update>
 
+    <select id="selectByIdList" parameterType="java.util.List" resultType="com.zhehao.fishing.model.PostEntity">
+        SELECT * FROM posts WHERE post_id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
     <update id="updatePost" parameterType="com.zhehao.fishing.model.PostEntity">
         UPDATE posts
         SET

@@ -88,4 +88,5 @@ public class CommunityController {
         List<PostEntity> postList = communityService.getPostPage(pageNum, pageSize);
         return ResponseEntity.ok(postList);
     }
+
 }

@@ -1,18 +1,12 @@
 package com.zhehao.fishing.catches.controller;
 
-
-
 import com.zhehao.fishing.catches.service.CatchService;
 import com.zhehao.fishing.exceptions.CatchNotFoundException;
-import com.zhehao.fishing.exceptions.UserAlreadyExistsException;
 import com.zhehao.fishing.model.CatchEntity;
-import com.zhehao.fishing.model.FishEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -30,6 +24,7 @@ public class CatchController {
     public List<CatchEntity> findAllCatches() {
         return catchService.list();
     }
+
 
     @PostMapping
     public ResponseEntity<String> addCatch(@RequestBody CatchEntity catchEntity){

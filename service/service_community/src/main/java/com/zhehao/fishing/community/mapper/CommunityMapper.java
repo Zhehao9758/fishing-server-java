@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface CommunityMapper extends BaseMapper<PostEntity> {
+
+    List<PostEntity> selectByIdList(List<Long> ids);
     void insertPost(PostEntity post);
     PostEntity getPostById(Long post_id);
     List<PostEntity> getPostsByUserIdOrderedByTime(Long user_id);

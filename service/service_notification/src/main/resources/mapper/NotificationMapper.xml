@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.fishing.notification.mapper.NotificationMapper">
+
+
+    <insert id="insertNotification" parameterType="com.zhehao.fishing.model.NotificationEntity">
+        INSERT INTO notifications (user_id, notification_time, is_read, message_preview, notification_event, notification_source, source_id)
+        VALUES (#{userId}, #{notificationTime}, #{isRead}, #{messagePreview}, #{notificationEvent}, #{notificationSource}, #{sourceId})
+    </insert>
+
+    <select id="getNotificationById" resultType="com.zhehao.fishing.model.NotificationEntity">
+        SELECT * FROM notifications WHERE notification_id = #{notificationId}
+    </select>
+
+    <select id="getNotificationsByUserIdOrderedByTime" parameterType="long" resultType="com.zhehao.fishing.model.NotificationEntity">
+        SELECT * FROM notifications
+        WHERE user_id = #{userId}
+        ORDER BY notification_time DESC
+    </select>
+
+
+    <update id="markAsRead" parameterType="java.lang.Long">
+        UPDATE notifications
+        SET is_read = 1
+        WHERE notification_id = #{notificationId}
+    </update>
+
+    <!-- Delete a fish by id -->
+    <delete id="deleteNotificationById">
+        DELETE FROM notifications WHERE notification_id = #{notificationId}
+    </delete>
+
+</mapper>

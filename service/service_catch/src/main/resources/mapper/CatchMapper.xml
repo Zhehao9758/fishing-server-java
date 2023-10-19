@@ -24,6 +24,13 @@
         WHERE catch_id = #{catchId}
     </update>
 
+    <select id="getCatchesByIds" parameterType="java.util.List" resultType="com.zhehao.fishing.model.CatchEntity">
+        SELECT * FROM catches WHERE catch_id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
 
     <update id="decrementLikes" parameterType="java.lang.Long">
         UPDATE catches

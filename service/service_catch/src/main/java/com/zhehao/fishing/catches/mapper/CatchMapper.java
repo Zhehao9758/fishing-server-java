@@ -11,6 +11,7 @@ public interface CatchMapper extends BaseMapper<CatchEntity> {
     void insertCatch(CatchEntity catchEntity);
     CatchEntity getCatchById(long id);
     List<CatchEntity> getCatchesByUserIdOrderedByTime(long user_id);
+    List<CatchEntity> getCatchesByIds(List<Long> ids);
     void updateCatch(CatchEntity catchEntity);
     void deleteCatchById(long id);
 

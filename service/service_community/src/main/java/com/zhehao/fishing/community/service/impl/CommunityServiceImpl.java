@@ -3,16 +3,22 @@ package com.zhehao.fishing.community.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhehao.fishing.common.interfaces.CommentsInPostService;
+import com.zhehao.fishing.common.interfaces.LikesInCatchService;
+import com.zhehao.fishing.common.interfaces.LikesInPostService;
+import com.zhehao.fishing.common.interfaces.PostBatchService;
 import com.zhehao.fishing.community.mapper.CommunityMapper;
 import com.zhehao.fishing.community.service.CommunityService;
 import com.zhehao.fishing.exceptions.PostNotFoundException;
 import com.zhehao.fishing.model.PostEntity;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, PostEntity> implements CommunityService {
+@DubboService(interfaceClass = PostBatchService.class)
+public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, PostEntity> implements CommunityService, PostBatchService {
     private final CommunityMapper communityMapper;
 
     @Autowired
@@ -59,42 +65,8 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, PostEntit
     }
 
     @Override
-    public void incrementLikes(long id) {
-        if(getPostById(id)==null){
-            throw new PostNotFoundException("Post not exits");
-        }
-        communityMapper.incrementLikes(id);
+    public List<PostEntity> getPostsByIdList(List<Long> ids) {
+        return communityMapper.selectByIdList(ids);
     }
 
-    @Override
-    public void incrementComments(long id) {
-        if(getPostById(id)==null){
-            throw new PostNotFoundException("Post not exits");
-        }
-        communityMapper.incrementComments(id);
-    }
-
-    @Override
-    public void decrementLikes(long id) {
-        PostEntity postEntity = getPostById(id);
-        if(postEntity==null){
-            throw new PostNotFoundException("Post not exits");
-        }
-        if(postEntity.getLikesNum() <= 0){
-            throw new IllegalStateException("No like to cancel");
-        }
-        communityMapper.decrementLikes(id);
-    }
-
-    @Override
-    public void decrementComments(long id) {
-        PostEntity postEntity = getPostById(id);
-        if(postEntity==null){
-            throw new PostNotFoundException("Post not exits");
-        }
-        if(postEntity.getCommentsNum() <= 0){
-            throw new IllegalStateException("No Comment to delete");
-        }
-        communityMapper.decrementComments(id);
-    }
 }

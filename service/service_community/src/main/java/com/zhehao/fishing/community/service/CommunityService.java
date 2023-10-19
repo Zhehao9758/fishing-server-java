@@ -12,8 +12,6 @@ public interface CommunityService extends IService<PostEntity> {
     void deletePostById(long post_id);
     void updatePost(PostEntity post);
     List<PostEntity> getPostPage(int pageNumber, int size);
-    void incrementLikes(long id);
-    void incrementComments(long id);
-    void decrementLikes(long id);
-    void decrementComments(long id);
+
+
 }

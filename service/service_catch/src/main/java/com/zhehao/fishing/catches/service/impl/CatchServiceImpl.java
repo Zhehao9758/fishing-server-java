@@ -6,15 +6,19 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhehao.fishing.catches.mapper.CatchMapper;
 import com.zhehao.fishing.catches.service.CatchService;
+import com.zhehao.fishing.common.interfaces.CatchBatchService;
+import com.zhehao.fishing.common.interfaces.LikesInCatchService;
 import com.zhehao.fishing.exceptions.CatchNotFoundException;
 import com.zhehao.fishing.model.CatchEntity;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CatchServiceImpl extends ServiceImpl<CatchMapper, CatchEntity> implements CatchService {
+@DubboService(interfaceClass = CatchBatchService.class)
+public class CatchServiceImpl extends ServiceImpl<CatchMapper, CatchEntity> implements CatchService, CatchBatchService {
     private final CatchMapper catchMapper;
 
     @Autowired
@@ -52,6 +56,11 @@ public class CatchServiceImpl extends ServiceImpl<CatchMapper, CatchEntity> impl
     }
 
     @Override
+    public List<CatchEntity> getCatchesByIds(List<Long> ids) {
+        return catchMapper.getCatchesByIds(ids);
+    }
+
+    @Override
     public List<CatchEntity> getCatchPage(int pageNumber, int size) {
         Page<CatchEntity> page = new Page<>(pageNumber, size);
         QueryWrapper<CatchEntity> wrapper = new QueryWrapper<>();
@@ -60,23 +69,4 @@ public class CatchServiceImpl extends ServiceImpl<CatchMapper, CatchEntity> impl
         return catchEntityPage.getRecords();
     }
 
-    @Override
-    public void incrementLikes(long id) {
-        if(getCatchById(id)==null){
-            throw new CatchNotFoundException("Catch not exits");
-        }
-        catchMapper.incrementLikes(id);
-    }
-
-    @Override
-    public void decrementLikes(long id){
-        CatchEntity catchEntity = getCatchById(id);
-        if(catchEntity==null){
-            throw new CatchNotFoundException("Catch not exits");
-        }
-        if(catchEntity.getLikes() <= 0){
-            throw new IllegalStateException("No like to cancel");
-        }
-        catchMapper.decrementLikes(id);
-    }
 }

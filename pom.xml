@@ -33,10 +33,6 @@
             <version>3.5.3.1</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -84,7 +80,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
             <version>2022.0.0.0</version>
         </dependency>
-
     </dependencies>
 
     <build>

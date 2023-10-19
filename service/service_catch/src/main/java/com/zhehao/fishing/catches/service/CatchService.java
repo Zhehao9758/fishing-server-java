@@ -3,6 +3,7 @@ package com.zhehao.fishing.catches.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhehao.fishing.model.CatchEntity;
 import com.zhehao.fishing.model.SkillEntity;
+import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock;
 
 import java.util.List;
 
@@ -15,6 +16,5 @@ public interface CatchService extends IService<CatchEntity> {
 
     List<CatchEntity> getCatchPage(int pageNumber, int size);
 
-    void incrementLikes(long id);
-    void decrementLikes(long id);
+
 }
