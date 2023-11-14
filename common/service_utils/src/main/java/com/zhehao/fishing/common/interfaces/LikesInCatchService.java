@@ -1,6 +1,9 @@
 package com.zhehao.fishing.common.interfaces;
 
+import com.zhehao.fishing.model.CatchEntity;
+
 public interface LikesInCatchService {
-    void incrementLikes(long id);
-    void decrementLikes(long id);
+    void incrementLikes(Long id);
+    void decrementLikes(Long id);
+    CatchEntity getCatchById(Long catchId);
 }

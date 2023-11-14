@@ -3,14 +3,13 @@ package com.zhehao.fishing.community.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhehao.fishing.common.interfaces.CommentsInPostService;
-import com.zhehao.fishing.common.interfaces.LikesInCatchService;
-import com.zhehao.fishing.common.interfaces.LikesInPostService;
-import com.zhehao.fishing.common.interfaces.PostBatchService;
+import com.zhehao.fishing.common.interfaces.*;
 import com.zhehao.fishing.community.mapper.CommunityMapper;
 import com.zhehao.fishing.community.service.CommunityService;
 import com.zhehao.fishing.exceptions.PostNotFoundException;
 import com.zhehao.fishing.model.PostEntity;
+import io.seata.spring.annotation.GlobalTransactional;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +19,12 @@ import java.util.List;
 @DubboService(interfaceClass = PostBatchService.class)
 public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, PostEntity> implements CommunityService, PostBatchService {
     private final CommunityMapper communityMapper;
+
+    @DubboReference(interfaceClass = PostsInLikeService.class)
+    private PostsInLikeService postsInLikeService;
+
+    @DubboReference(interfaceClass = PostsInCommentService.class)
+    private PostsInCommentService postsInCommentService;
 
     @Autowired
     public CommunityServiceImpl(CommunityMapper communityMapper){
@@ -43,11 +48,15 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, PostEntit
     }
 
     @Override
+    @GlobalTransactional
     public void deletePostById(long post_id) {
         if(getPostById(post_id) == null){
             throw new PostNotFoundException("Post not exists");
         }
         communityMapper.deletePostById(post_id);
+        // delete likes and comments
+        postsInLikeService.deleteLikesByPostId(post_id);
+        postsInCommentService.deleteCommentsByPostId(post_id);
     }
 
     @Override

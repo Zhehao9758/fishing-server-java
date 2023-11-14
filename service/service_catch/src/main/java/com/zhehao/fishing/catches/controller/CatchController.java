@@ -89,6 +89,15 @@ public class CatchController {
         return ResponseEntity.ok(catchList);
     }
 
+    @GetMapping("/upload")
+    public ResponseEntity<String> generatePresignedUploadUrl(@RequestParam("userId") Long user_id){
+        try{
+            return ResponseEntity.ok(catchService.generateTemporaryUploadUrl(user_id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error occurred");
+        }
+    }
+
 
 
 }

@@ -15,4 +15,9 @@
     <select id="myLikesOfPost" parameterType="java.lang.Long" resultType="java.util.List">
         SELECT post_id FROM post_likes WHERE user_id = #{userId}
     </select>
+
+    <delete id="deleteByPostId" parameterType="Long">
+        DELETE FROM post_likes WHERE post_id = #{postId}
+    </delete>
+
 </mapper>

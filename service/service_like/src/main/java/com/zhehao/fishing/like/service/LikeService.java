@@ -8,10 +8,10 @@ import com.zhehao.fishing.model.PostLikeEntity;
 import java.util.List;
 
 public interface LikeService {
-    void likeCatch(CatchLikeEntity catchLikeEntity);
-    void likePost(PostLikeEntity postLikeEntity);
-    void unlikeCatch(CatchLikeEntity catchLikeEntity);
-    void unlikePost(PostLikeEntity postLikeEntity);
+    boolean likeCatch(CatchLikeEntity catchLikeEntity);
+    boolean likePost(PostLikeEntity postLikeEntity);
+    boolean unlikeCatch(CatchLikeEntity catchLikeEntity);
+    boolean unlikePost(PostLikeEntity postLikeEntity);
     List<CatchEntity> myLikesOfCatch(Long userId);
     List<PostEntity> myLikesOfPost(Long userId);
 

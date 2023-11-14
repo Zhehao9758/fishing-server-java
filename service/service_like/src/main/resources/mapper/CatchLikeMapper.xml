@@ -16,4 +16,8 @@
         SELECT catch_id FROM catch_likes WHERE user_id = #{userId}
     </select>
 
+    <delete id="deleteByCatchId" parameterType="Long">
+        DELETE FROM catch_likes WHERE catch_id = #{catchId}
+    </delete>
+
 </mapper>

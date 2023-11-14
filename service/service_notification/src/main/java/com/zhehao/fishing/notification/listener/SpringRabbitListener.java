@@ -22,17 +22,17 @@ public class SpringRabbitListener {
     public void listenCatchLikeQueue(CatchLikeEntity catchLikeEntity) {
         System.out.println(catchLikeEntity);
         //write to db
-        notificationService.sendNotification(notificationService.buildNotification(catchLikeEntity));
+        //notificationService.sendNotification(notificationService.buildNotification(catchLikeEntity));
     }
 
-    @RabbitListener(queues = "post.like.queue")
+    //@RabbitListener(queues = "post.like.queue")
     public void listenPostLikeQueue(PostLikeEntity postLikeEntity) {
         System.out.println(postLikeEntity);
         //write to db
         notificationService.sendNotification(notificationService.buildNotification(postLikeEntity));
     }
 
-    @RabbitListener(queues = "post.comment.queue")
+    //@RabbitListener(queues = "post.comment.queue")
     public void listenPostCommentQueue(PostCommentEntity postCommentEntity) {
         System.out.println(postCommentEntity);
         //write to db

@@ -20,7 +20,7 @@ public class LikesInCatchServiceImpl implements LikesInCatchService {
     }
 
     @Override
-    public void incrementLikes(long id) {
+    public void incrementLikes(Long id) {
         if(catchMapper.getCatchById(id)==null){
             throw new CatchNotFoundException("Catch not exits");
         }
@@ -28,7 +28,7 @@ public class LikesInCatchServiceImpl implements LikesInCatchService {
     }
 
     @Override
-    public void decrementLikes(long id){
+    public void decrementLikes(Long id){
         CatchEntity catchEntity = catchMapper.getCatchById(id);
         if(catchEntity==null){
             throw new CatchNotFoundException("Catch not exits");
@@ -37,5 +37,10 @@ public class LikesInCatchServiceImpl implements LikesInCatchService {
             throw new IllegalStateException("No like to cancel");
         }
         catchMapper.decrementLikes(id);
+    }
+
+    @Override
+    public CatchEntity getCatchById(Long catchId) {
+        return catchMapper.getCatchById(catchId);
     }
 }

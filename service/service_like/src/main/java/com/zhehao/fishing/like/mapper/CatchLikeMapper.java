@@ -12,6 +12,6 @@ public interface CatchLikeMapper extends BaseMapper<CatchLikeEntity> {
     void likeCatch(CatchLikeEntity catchLikeEntity);
     void unlikeCatch(CatchLikeEntity catchLikeEntity);
     List<Long> myLikesOfCatch(Long userId);
-
+    void deleteByCatchId(Long catchId);
 
 }

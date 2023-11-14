@@ -38,4 +38,9 @@ public class LikesInPostServiceImpl implements LikesInPostService {
         }
         communityMapper.decrementLikes(id);
     }
+
+    @Override
+    public PostEntity getPostById(Long id) {
+        return communityMapper.getPostById(id);
+    }
 }

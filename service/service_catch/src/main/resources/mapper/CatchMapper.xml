@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getCatchById" resultType="com.zhehao.fishing.model.CatchEntity">
-        SELECT * FROM catches WHERE catch_id = #{catchId}
+        SELECT * FROM catches WHERE catch_id = #{catchId} FOR UPDATE
     </select>
 
     <select id="getCatchesByUserIdOrderedByTime" parameterType="long" resultType="com.zhehao.fishing.model.CatchEntity">
