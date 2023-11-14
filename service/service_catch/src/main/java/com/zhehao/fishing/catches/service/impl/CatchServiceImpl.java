@@ -32,8 +32,8 @@ public class CatchServiceImpl extends ServiceImpl<CatchMapper, CatchEntity> impl
     private final CatchMapper catchMapper;
     private final String bucketName = "fishing-catches";
     private final String region = "us-west-1";
-    private final String awsAccessKey = "AKIA2EFBW5KD5CYD7BXJ"; // 替换为实际的 AWS 访问密钥
-    private final String awsSecretKey = "ti3I/CGVvW/SaRB3aNO6vSoZNlsLKTA25GbzS/no"; // 替换为实际的 AWS 机密访问密钥
+    private final String awsAccessKey = ""; // 替换为实际的 AWS 访问密钥
+    private final String awsSecretKey = ""; // 替换为实际的 AWS 机密访问密钥
 
     @DubboReference(interfaceClass = CatchesInLikeService.class)
     private CatchesInLikeService catchesInLikeService;
