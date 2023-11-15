@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getPostById" resultType="com.zhehao.fishing.model.PostEntity">
-        SELECT * FROM posts WHERE post_id = #{postId} FOR UPDATE
+        SELECT * FROM posts WHERE post_id = #{postId} FOR SHARE
     </select>
 
     <select id="getPostsByUserIdOrderedByTime" parameterType="long" resultType="com.zhehao.fishing.model.PostEntity">
